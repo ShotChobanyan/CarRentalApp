@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CarRentalApp.Models.Car>
+
+<div class="option-poses">
+
+    @foreach (var item in Model)
+    {
+        @if(item.IsAvailable == true)
+        {
+        <div class="box">
+
+            @if (this.Context.User.IsInRole("Admin"))
+            {      
+            <span class="edit-button">
+            <a asp-controller="Cars" asp-action="Edit" asp-route-id="@item.Id">
+                <span class="edit-button"><img width="30" src="~/images/Edit-logo.jpg" /></span>
+            </a>
+        </span>
+            }
+        <span class="rent-button-pos">
+            <a asp-controller="Cars" asp-action="Rent" asp-route-id="@item.Id">
+                <button class="rent-button">Rent</button>
+            </a>
+        </span>
+
+        <div class="car-photo">
+            <img width="200" src="data:image/png;base64, @item.CarPhoto" />
+        </div>
+        <div class="car-info">
+            <span><h5>@item.Manufacturer, @item.CarModel</h5></span>
+            <span>@item.ManufacturingYear (@item.CarType)</span>
+            <hr />
+            <div>
+            <p><img class="icon-pic" src="~/images/gear.png"/>@item.Transmission 
+                <img class="icon-pic" src="~/images/person.png"/>@item.Seats 
+                <img class="icon-pic" src="~/images/door.png"/>@item.Doors 
+                
+            </p>
+            </div>
+            <hr />
+            <div>@item.Additional</div>
+        </div>
+        <div class="price">
+            <div class="price-box"><h4><strong>@item.Price $/day</strong> </h4></div>
+        </div>
+        </div>
+        }
+
+
+    
+    }
+
+</div>

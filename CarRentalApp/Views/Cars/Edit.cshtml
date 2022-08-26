@@ -1,0 +1,92 @@
+﻿@model CarRentalApp.Models.Car
+
+<div class="form-box" style="margin-left: 35%">
+    <div style="margin-left: 20px">
+        <h2 class="forms">Edit car info</h2>
+        <form class="forms" asp-action="Edit" asp-controller="Cars" enctype="multipart/form-data">
+            <p>
+                <input type="hidden" asp-for="Id" />
+            <p>
+                <label asp-for="Manufacturer">Manufacturer</label><br />
+                <input class="input-box" type="text" asp-for="Manufacturer" />
+            </p>
+            <p>
+                <label asp-for="CarModel">Model</label><br />
+                <input class="input-box" type="text" asp-for="CarModel" />
+            </p>
+            <p>
+                <label asp-for="CarType">Model Type</label><br />
+                <select asp-for="CarType" class="input-box">
+                    <option value="0">SUV</option>
+                    <option value="1">Sedan</option>
+                    <option value="2">Convertible</option>
+                    <option value="3">Coupe</option>
+                    <option value="4">Minivan</option>
+                    <option value="5">Hatchback</option>
+                </select>
+            </p>
+            <p>
+                <label asp-for="ManufacturingYear">Year</label><br />
+                <input class="input-box" type="number" asp-for="ManufacturingYear" />
+            </p>
+            <p>
+                <label asp-for="Seats">Seats</label><br />
+                <input class="input-box" type="number" asp-for="Seats" />
+            </p>
+            <p>
+                <label asp-for="Doors">Doors</label><br />
+                <input class="input-box" type="number" asp-for="Doors" />
+            </p>
+            <p>
+                <label asp-for="Transmission">Transmission</label><br />
+                <select asp-for="Transmission" class="input-box">
+                    <option value="0">Manual</option>
+                    <option value="1">Automatic</option>
+                </select>
+
+            <p>
+                <label asp-for="Price">Price</label><br />
+                <input class="input-box" type="number" asp-for="Price" />
+            </p>
+            <p>
+                <textarea class="input-box" asp-for="Additional">Additional info</textarea><br />
+            </p>
+            <p>
+                <label asp-for="IsAvailable">Available</label>
+                <input type="checkbox" asp-for="IsAvailable" />
+            </p>
+            <p>
+                <input name="photo" class="input-box" type="file" />
+            </p>
+            <p>
+                <input style="background-color: #157024; color: white" type="submit" value="Submit" />
+                <button type="button" id="delete" class="delete-button">Delete</button>
+            </p>
+        </form>
+        <form class="forms" asp-action="Delete" asp-controller="Cars" enctype="multipart/form-data">
+            <p>
+                <input type="hidden" name="Id" value="@Model.Id"/>
+            </p>
+            <p>
+                <button style="display: none" type="submit" id="confirmed" asp-action="Delete" asp-controller="Cars" asp-route-id="@Model.Id"></button>
+
+            </p>
+        </form>
+
+    </div>
+</div>
+
+                <script>
+
+                     document.getElementById("delete").onclick = function(e)
+                    {
+                        e.preventDefault();
+                        let confirmation = window.confirm("Are you sure you want to delete this vehicle?")
+
+                        if(confirmation)
+                        {
+                            let confirmationBtn = document.getElementById("confirmed");
+                            confirmationBtn.click()
+                        }
+                    }
+                </script>

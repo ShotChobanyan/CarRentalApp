@@ -1,0 +1,65 @@
+﻿@model CarRentalApp.Models.Car
+
+<div class="form-box" style="margin-left: 35%">
+    <div style="margin-left: 20px">
+        <h2 class="forms">Add new car</h2>
+        <form class="forms" asp-action="create" asp-controller="cars" enctype="multipart/form-data">
+            <p>
+                <label asp-for="Manufacturer">Manufacturer</label><br />
+                <input class="input-box" type="text" asp-for="Manufacturer" />
+            </p>
+            <p>
+                <label asp-for="CarModel">Model</label><br />
+                <input class="input-box" type="text" asp-for="CarModel" />
+            </p>
+            <p>
+                <label asp-for="CarType">Model Type</label><br />
+                <select asp-for="CarType" class="input-box">
+                    <option value="0">SUV</option>
+                    <option value="1">Sedan</option>
+                    <option value="2">Convertible</option>
+                    <option value="3">Coupe</option>
+                    <option value="4">Minivan</option>
+                    <option value="5">Hatchback</option>
+                </select>
+            </p>
+            <p>
+                <label asp-for="ManufacturingYear">Year</label><br />
+                <input class="input-box" type="number" asp-for="ManufacturingYear" />
+            </p>
+            <p>
+                <label asp-for="Seats">Seats</label><br />
+                <input class="input-box" type="number" asp-for="Seats" />
+            </p>
+            <p>
+                <label asp-for="Doors">Doors</label><br />
+                <input class="input-box" type="number" asp-for="Doors" />
+            </p>
+            <p>
+                <label asp-for="Transmission">Transmission</label><br />
+                <select asp-for="Transmission" class="input-box">
+                    <option value="0">Manual</option>
+                    <option value="1">Automatic</option>
+                </select>
+
+            <p>
+                <label asp-for="Price">Price</label><br />
+                <input class="input-box" type="number" asp-for="Price" />
+            </p>
+            <p>
+                <textarea class="input-box" asp-for="Additional">Additional info</textarea><br />
+            </p>
+            <p>
+                <input name="photo" class="input-box" style="color: white" type="file" />
+            </p>
+            <p>
+                <label asp-for="IsAvailable">Available</label>
+                <input type="checkbox" asp-for="IsAvailable" />
+            </p>
+            <p>
+                <input style="background-color: #157024; color: white" type="submit" value="Submit" />
+            </p>
+        </form>
+    </div>
+</div>
+

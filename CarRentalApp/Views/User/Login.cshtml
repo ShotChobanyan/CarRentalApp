@@ -1,0 +1,22 @@
+﻿@model CarRentalApp.Models.User
+<div class="login-pos">
+
+<div class="form-box forms" >
+
+<h2>Login To Continue</h2>
+        <form asp-action="Login"  asp-controller="User" asp->
+            <p>
+                <label>Email</label><br />
+                <input class="input-box" asp-for="Email" />
+            </p>
+            <p>
+                <label>Password</label><br />
+                <input class="input-box" type='password' asp-for="Password" />
+            </p>
+            <p class="submit-pos">
+            <input class="submit" type='submit' value='Login' />
+            </p>
+        </form>
+
+</div>
+</div>

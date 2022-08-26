@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CarRentalApp.Models.RentHistory>
+
+<div class="stats-pos">
+    <table class="table">
+        <tr class="table">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Dates</th>
+            <th>Available in</th>
+            <th>Cost</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Car.Manufacturer, @item.Car.CarModel</td>
+                <td>@item.From.ToShortDateString() - @item.To.ToShortDateString()</td>
+                <td>@{
+                        var today = DateTime.Today;
+                        var until = "N/A";
+                        if(today < item.To && today > item.From)
+                        {
+                            until = (item.To - today).TotalDays.ToString() + " days";     
+                        }
+                    }
+                    @until 
+                <td>
+                    @{
+                        var total = (item.To - item.From).TotalDays * double.Parse(item.Car.Price);
+
+                    }
+                    @total$
+                </td>
+            </tr>
+        }
+    </table>
+</div>

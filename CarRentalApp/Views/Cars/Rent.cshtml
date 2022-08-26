@@ -1,0 +1,80 @@
+﻿@model CarRentalApp.Models.RentHistory
+
+@{
+    var car = ViewBag.Car as Car;
+}
+
+<div class="option-poses">
+    <div class="box">
+
+        <div class="car-photo">
+            <img width="200" src="data:image/png;base64, @car.CarPhoto" />
+        </div>
+        <div class="car-info">
+            <span><h5>@car.Manufacturer, @car.CarModel</h5></span>
+            <span>@car.ManufacturingYear (@car.CarType)</span>
+            <hr />
+            <div>
+                <p>
+                    <img class="icon-pic" src="~/images/gear.png" />@car.Transmission
+                    <img class="icon-pic" src="~/images/person.png" />@car.Seats
+                    <img class="icon-pic" src="~/images/door.png" />@car.Doors
+
+                </p>
+            </div>
+            <hr />
+            <div>@car.Additional</div>
+        </div>
+        <div class="price">
+            <div class="price-box"><h4><strong>@car.Price $/day</strong> </h4></div>
+        </div>
+    </div>
+    <div class="poses">
+
+
+        <span class="rent-box">
+
+
+            <form class="forms" name="rentDates" asp-action="rent" asp-controller="cars" enctype="multipart/form-data">
+                <p>
+                    <input type="hidden" asp-for="Id" value="0" />
+                    <input type="hidden" asp-for="CarId" value="@car.Id" /></p>
+                <p>
+                <p >
+                     <label asp-for="From">From:</label><br />                 
+                   <input  class="input-box" type="date" asp-for="From" />
+                </p>
+                <p >
+                 <label asp-for="To">To:</label><br />
+                    <input class="input-box" type="date" asp-for="To" />
+                </p>
+                <h4 class="total-box " id="total"></h4>
+                <p class="submit-pos">
+@*                    <input style="background-color: #157024; color: white" type="button" value="Calculate" onclick="calculate()"/>
+*@                    <input class="submit" type="submit" value="Submit" />
+                </p>
+            </form>
+            <script>
+                    let form = document.forms['rentDates'];
+                    
+                form.onchange = function(e){
+                    e.preventDefault();
+
+                    let fromDate = new Date(form.From.value);
+
+                    let toDate = new Date(form.To.value);
+                 
+                    if( form.From.value !=='' &&  form.To.value !== ''){
+                        if(toDate > fromDate){
+                            let dayCount = toDate.getDate() - fromDate.getDate();
+                            document.getElementById("total").innerText = @car.Price * dayCount + "$ in total";
+                        }
+                        else{
+                             document.getElementById("total").innerText = "Error: Please insert valid dates";
+                        }
+                    }
+                }
+            </script>
+        </span>
+    </div>
+</div>

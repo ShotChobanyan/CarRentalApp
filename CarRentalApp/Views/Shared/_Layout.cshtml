@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarRentalApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CarRentalApp.styles.css" asp-append-version="true" />
+</head>
+<body style="background-color: silver ; color: white ">
+    <header style="background-color: rgb(59 59 59)">
+        <span>
+            <a style="color: rgb(59 59 59)" asp-controller="Cars" asp-action="Index">
+                <img width="200" src="~/images/Valodiks_Logo.png" />
+            </a>
+        </span>
+
+        @if (this.Context.User.IsInRole("Admin"))
+        {
+            <span style="position: relative; left: 630px">
+                <a style="color: white" asp-controller="Cars" asp-action="Create">
+                <u style="color: white; font-size: 18px">Create</u>
+            </a>
+        </span>
+        }
+        @if (this.Context.User.IsInRole("Admin"))
+        {
+            <span style="position: relative; left: 660px">
+                <a style="color: white" asp-controller="Cars" asp-action="Stats">
+                    <u style="color: white; font-size: 18px">Stats</u>
+                </a>
+            </span>
+        } 
+        @if (this.Context.User.IsInRole("Admin"))
+        {
+            <span style="position: relative; left: 690px">
+                <a style="color: white" asp-controller="Cars" asp-action="Reserve">
+                    <u style="color: white; font-size: 18px">Reserve</u>
+                </a>
+            </span>
+        }
+       @* <span style="position: relative; left: 660px">
+            <a asp-controller="Home" asp-action="About">
+                <u style="color: white; font-size: 18px">About</u>
+            </a>
+        </span>
+*@
+    </header>
+    <div class="custom-positions">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
