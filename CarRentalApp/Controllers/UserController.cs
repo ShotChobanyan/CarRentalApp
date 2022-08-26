@@ -34,6 +34,10 @@ namespace CarRentalApp.Controllers
             {
                 claims.Add(new Claim(ClaimTypes.Role, "Admin"));
             }
+            else
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "Customer"));
+            }
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
 

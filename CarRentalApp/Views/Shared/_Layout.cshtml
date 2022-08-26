@@ -40,12 +40,14 @@
                 </a>
             </span>
         }
-       @* <span style="position: relative; left: 660px">
-            <a asp-controller="Home" asp-action="About">
-                <u style="color: white; font-size: 18px">About</u>
+        @if (!this.Context.User.IsInRole("Admin") && !this.Context.User.IsInRole("Customer"))
+        {
+            <span style="position: relative; left: 720px">
+                <a asp-controller="User" asp-action="Login">
+                <u style="color: white; font-size: 18px">LogIn</u>
             </a>
         </span>
-*@
+        }
     </header>
     <div class="custom-positions">
         <main role="main" class="pb-3">
